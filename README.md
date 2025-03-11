@@ -19,12 +19,15 @@ Instale o [vs_BuildTools.exe](https://visualstudio.microsoft.com/pt-br/visual-cp
 
 ```bash
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-uv python install 3.11
+uv python install 3.13.2
 cd E:\programas\ia\virtual_environment
-uv venv --python 3.11 my_env
+uv venv --python 3.13.2 my_env
 my_env\Scripts\activate
-uv pip install -U ipykernel unstructured langchain langchain-community "unstructured[all-docs]" ipywidgets tqdm
-uv pip install -U numpy sympy langchain_ollama chromadb protobuf==3.20.3
+uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
+uv pip install -U ipykernel tqdm numpy sympy chromadb protobuf==3.20.3 docling
+uv pip install -U unstructured langchain langchain-community langchain_ollama "unstructured[all-docs]" ipywidgets
+
+
 ```
 
 Para o notebook: `"E:\programas\ia\virtual_environment\my_env\Scripts\python.exe"`
@@ -61,3 +64,4 @@ ollama run deepseek-r1
 - [nomic-embed-text](https://ollama.com/library/nomic-embed-text)
 - [llama3.2](https://ollama.com/library/llama3.2)
 - [deepseek-r1](https://ollama.com/library/deepseek-r1)
+- [pytorch](https://pytorch.org/get-started/locally/)
