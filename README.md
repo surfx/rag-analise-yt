@@ -25,7 +25,7 @@ uv venv --python 3.13.2 my_env
 my_env\Scripts\activate
 uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
 uv pip install -U ipykernel tqdm numpy sympy chromadb protobuf==3.20.3 docling
-uv pip install -U unstructured langchain langchain-community langchain_ollama "unstructured[all-docs]" ipywidgets
+uv pip install -U unstructured langchain langchain-community langchain_ollama langchain_chroma "unstructured[all-docs]" ipywidgets
 
 
 ```
@@ -65,3 +65,5 @@ ollama run deepseek-r1
 - [llama3.2](https://ollama.com/library/llama3.2)
 - [deepseek-r1](https://ollama.com/library/deepseek-r1)
 - [pytorch](https://pytorch.org/get-started/locally/)
+- [Ollama Embeddings](https://docs.llamaindex.ai/en/stable/examples/embeddings/ollama_embedding/)
+- [Chroma Persistent Client](https://docs.trychroma.com/docs/run-chroma/persistent-client)
