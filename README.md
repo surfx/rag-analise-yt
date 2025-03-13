@@ -21,23 +21,47 @@ Instale o [vs_BuildTools.exe](https://visualstudio.microsoft.com/pt-br/visual-cp
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 uv python install 3.13.2
 cd E:\programas\ia\virtual_environment
-uv venv --python 3.13.2 my_env
-my_env\Scripts\activate
+uv venv --python 3.13.2 my_env_3129
+my_env_3129\Scripts\activate
 uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
 uv pip install -U ipykernel tqdm numpy sympy chromadb protobuf==3.20.3 docling
 uv pip install -U unstructured langchain langchain-community langchain_ollama langchain_chroma "unstructured[all-docs]" ipywidgets
-
-
+uv pip install -U pytesseract
 ```
 
-Para o notebook: `"E:\programas\ia\virtual_environment\my_env\Scripts\python.exe"`
+Para o notebook: `"E:\programas\ia\virtual_environment\my_env_3129\Scripts\python.exe"`
 
 
 ## link simbolico (cmd)
 
 ```bash
-MKLINK /D D:\meus_documentos\workspace\ia\rag\rag002\my_env E:\programas\ia\virtual_environment\my_env
+MKLINK /D D:\meus_documentos\workspace\ia\rag\rag002\my_env_3129 E:\programas\ia\virtual_environment\my_env_3129
 ```
+
+# tesserocr
+
+- [tesserocr-windows_build](https://github.com/simonflueckiger/tesserocr-windows_build)
+- [tesserocr-windows_build releases](https://github.com/simonflueckiger/tesserocr-windows_build/releases)
+
+```bash
+cd E:\programas\ia\virtual_environment
+my_env_3129\Scripts\activate
+uv pip install https://github.com/simonflueckiger/tesserocr-windows_build/releases/download/tesserocr-v2.8.0-tesseract-5.5.0/tesserocr-2.8.0-cp312-cp312-win_amd64.whl
+```
+
+## tesseract releases
+
+[tesseract releases](https://github.com/tesseract-ocr/tesseract/releases)
+
+descompactar e add ao PATH do Windows: `E:\programas\ia\Tesseract-OCR\tessdata`
+
+## [tessdata github](https://github.com/tesseract-ocr/tessdata)
+
+Faça o download de [tessdata](https://github.com/tesseract-ocr/tessdata/archive/refs/heads/main.zip) e descompacte em: `E:\programas\ia\Tesseract-OCR\tessdata`
+
+Windows PATH: 
+- TESSDATA_PREFIX : E:\programas\ia\Tesseract-OCR\tessdata
+
 
 ## Chromadb
 
@@ -67,3 +91,4 @@ ollama run deepseek-r1
 - [pytorch](https://pytorch.org/get-started/locally/)
 - [Ollama Embeddings](https://docs.llamaindex.ai/en/stable/examples/embeddings/ollama_embedding/)
 - [Chroma Persistent Client](https://docs.trychroma.com/docs/run-chroma/persistent-client)
+- [tesseract releases](https://github.com/tesseract-ocr/tesseract/releases)
