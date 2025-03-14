@@ -38,11 +38,6 @@ Saída:
 | nomic-embed-text:latest | 0a109f422b47 | 274 MB |
 
 
-# Créditos
-
-Todos os créditos à [
-Tony Kipkemboi](https://www.youtube.com/@tonykipkemboi) e seu vídeo [How to chat with your PDFs using local Large Language Models [Ollama RAG]](https://www.youtube.com/watch?v=ztBJqzBU5kc&t=352s). Grato ao entusiasmo e partilhar seu conhecimento
-
 # Dependências
 
 ## Python pip
@@ -219,11 +214,19 @@ Resetar o chroma (não funcional):
 
 `curl "http://127.0.0.1:5000/resetChroma"`
 
+# Notebooks
+
+Os notebooks ipynb `notebook.ipynb` e `note002.ipynb` servem de base para estudo, referência, melhora e testes dos métodos do arquivo `rag_python.py`
+
 # TODO
 
 - [ ] `deleteCollection` e `resetChroma` precisam de estudo para aprimorar suas funcionalidades
 - [ ] utilizar o `tesserocr` para fazer o OCR das imagens dos PDFs
 - [ ] Integrar o servidor Flask RAG com o projeto [chat ollama angular](https://github.com/surfx/chat-ollama-angular).
+
+# Créditos
+
+Quero agradecer à [Tony Kipkemboi](https://www.youtube.com/@tonykipkemboi) e seu vídeo [How to chat with your PDFs using local Large Language Models [Ollama RAG]](https://www.youtube.com/watch?v=ztBJqzBU5kc&t=352s), pelo seu entusiasmo e por partilhar seu conhecimento. Um vídeo simples sem utilizar apis pagas que motivaram o estudo e desenvolvimento deste projeto.
 
 # Referências
 
