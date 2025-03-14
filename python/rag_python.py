@@ -1,11 +1,14 @@
+# Como executar:
 # cd E:\programas\ia\virtual_environment && my_env_3129\Scripts\activate
 # uv run D:\meus_documentos\workspace\ia\rag\rag002\python\rag_python.py
 
+# para saber como consultar: ver final do arquivo - curls
 
 PATH_ARQUIVOS = r"data"
-LANG = "por" # por eng
+LANG = "por" # por | eng
 # persist_directory = "chroma/chroma_db"  # Diretório onde o banco de dados será salvo
 persist_directory = r"D:\meus_documentos\workspace\ia\rag\rag002\chroma\chroma_db"
+local_model = "deepseek-r1" # deepseek-r1 | llama3.2
 
 # ------------------------------
 # torch
@@ -303,8 +306,8 @@ from langchain_core.runnables import RunnablePassthrough
 from langchain.retrievers.multi_query import MultiQueryRetriever
 
 # LLM from Ollama
-local_model = "llama3.2"
-local_model = "deepseek-r1"
+# local_model = "llama3.2"
+# local_model = "deepseek-r1"
 llm = ChatOllama(model=local_model)
 
 QUERY_PROMPT = PromptTemplate(
@@ -405,6 +408,7 @@ if __name__ == '__main__':
     torch_init()
     app.run(debug=True)
 
+# Como executar
 # cd E:\programas\ia\virtual_environment && my_env_3129\Scripts\activate
 # uv run D:\meus_documentos\workspace\ia\rag\rag002\python\rag_python.py
 
