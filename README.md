@@ -3,8 +3,9 @@
 Todos os créditos à [
 Tony Kipkemboi](https://www.youtube.com/@tonykipkemboi) e seu vídeo [How to chat with your PDFs using local Large Language Models [Ollama RAG]](https://www.youtube.com/watch?v=ztBJqzBU5kc&t=352s). Grato ao entusiasmo e partilhar seu conhecimento
 
+Este projeto executa na versão do Python 3.12.9.
 
-# Python
+# Python pip
 
 ```bash
 curl -o get-pip.py https://bootstrap.pypa.io/get-pip.py
@@ -15,21 +16,21 @@ python get-pip.py
 
 Instale o [vs_BuildTools.exe](https://visualstudio.microsoft.com/pt-br/visual-cpp-build-tools/)
 
-# UV
+# uv
 
 ```bash
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-uv python install 3.13.2
+uv python install 3.12.9
 cd E:\programas\ia\virtual_environment
-uv venv --python 3.13.2 my_env_3129
+uv venv --python 3.12.9 my_env_3129
 my_env_3129\Scripts\activate
 uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
 uv pip install -U ipykernel tqdm numpy sympy chromadb protobuf==3.20.3 docling
 uv pip install -U unstructured langchain langchain-community langchain_ollama langchain_chroma "unstructured[all-docs]" ipywidgets
-uv pip install -U pytesseract
+uv pip install -U pytesseract flask
 ```
 
-Para o notebook: `"E:\programas\ia\virtual_environment\my_env_3129\Scripts\python.exe"`
+Para o notebook (vscode): `"E:\programas\ia\virtual_environment\my_env_3129\Scripts\python.exe"`
 
 
 ## link simbolico (cmd)
@@ -59,11 +60,14 @@ descompactar e add ao PATH do Windows: `E:\programas\ia\Tesseract-OCR\tessdata`
 
 Faça o download de [tessdata](https://github.com/tesseract-ocr/tessdata/archive/refs/heads/main.zip) e descompacte em: `E:\programas\ia\Tesseract-OCR\tessdata`
 
-Windows PATH: 
+Windows PATH:
+
 - TESSDATA_PREFIX : E:\programas\ia\Tesseract-OCR\tessdata
 
 
-## Chromadb
+# Chromadb
+
+Como servidor
 
 - [http://localhost:8000/](http://localhost:8000/)
 
@@ -71,7 +75,7 @@ Windows PATH:
 chroma run --host localhost --port 8000 --path ./my_chroma_data
 ```
 
-## Ollama
+# Ollama
 
 ```bash
 curl -fsSL https://ollama.com/install.sh | sh
@@ -81,7 +85,40 @@ ollama run llama3.2
 ollama run deepseek-r1
 ```
 
-# referencias
+# Flask Rag
+
+Para subir um servidor flask, execute o arquivo `rag_python.py`
+
+```bash
+cd E:\programas\ia\virtual_environment && my_env_3129\Scripts\activate
+uv run D:\meus_documentos\workspace\ia\rag\rag002\python\rag_python.py
+```
+
+obs: precisa do servidor ollama `ollama serve`
+
+## Curls
+
+Indexar os arquivos da pasta `D:\meus_documentos\workspace\ia\rag\rag002\data` na coleção `local-rag`:
+
+`curl -X POST -H "Content-Type: text/plain" -d "D:\meus_documentos\workspace\ia\rag\rag002\data" http://127.0.0.1:5000/indexarChromaDB?collection_name=local-rag`
+
+Exemplo de consulta RAG:
+
+`curl "http://127.0.0.1:5000/doQuestion?prompt=Como+jogar+monopoly+%3F"`
+
+Excluir coleção (exclui, porém não limpa os embeddings):
+
+`curl -X DELETE "http://127.0.0.1:5000/deleteCollection?collection_name=local-rag"`
+
+Resetar o chroma (não funcional):
+
+`curl "http://127.0.0.1:5000/resetChroma"`
+
+
+Obs: `deleteCollection` e `resetChroma` precisam de estudo para aprimorar suas funcionalidades
+
+
+# Referências
 
 - [How to chat with your PDFs using local Large Language Models [Ollama RAG]](https://www.youtube.com/watch?v=ztBJqzBU5kc)
 - [Chat with PDF locally using Ollama + LangChain](https://github.com/tonykipkemboi/ollama_pdf_rag/tree/main)
@@ -92,3 +129,4 @@ ollama run deepseek-r1
 - [Ollama Embeddings](https://docs.llamaindex.ai/en/stable/examples/embeddings/ollama_embedding/)
 - [Chroma Persistent Client](https://docs.trychroma.com/docs/run-chroma/persistent-client)
 - [tesseract releases](https://github.com/tesseract-ocr/tesseract/releases)
+- [gemma3:27b](https://ollama.com/library/gemma3:27b)
