@@ -68,7 +68,7 @@ my_env_3129\Scripts\activate
 uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
 uv pip install -U ipykernel tqdm numpy sympy chromadb protobuf==3.20.3 docling
 uv pip install -U unstructured langchain langchain-community langchain_ollama langchain_chroma "unstructured[all-docs]" ipywidgets
-uv pip install -U pytesseract flask
+uv pip install -U pytesseract flask flask-cors
 ```
 
 **obs**: o comando para instalar o torch varia de acordo com o seu hardware e SO. Para mais informações veja [pytorch](https://pytorch.org/get-started/locally/).
@@ -223,6 +223,8 @@ Os notebooks ipynb `notebook.ipynb` e `note002.ipynb` servem de base para estudo
 - [ ] `deleteCollection` e `resetChroma` precisam de estudo para aprimorar suas funcionalidades
 - [ ] utilizar o `tesserocr` para fazer o OCR das imagens dos PDFs
 - [ ] Integrar o servidor Flask RAG com o projeto [chat ollama angular](https://github.com/surfx/chat-ollama-angular).
+- [ ] Alterar o projeto [rag-analise-yt](https://github.com/surfx/rag-analise-yt) na indexação - receber um conjunto de arquivos via POST
+- [ ] Criar GET para is alive
 
 # Créditos
 

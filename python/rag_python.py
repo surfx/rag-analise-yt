@@ -366,8 +366,10 @@ def do_question(prompt):
 # ------------------------------
 import concurrent.futures
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})
 executor = concurrent.futures.ThreadPoolExecutor(max_workers=4)  # Ajuste max_workers conforme necessário
 
 @app.route('/indexarChromaDB', methods=['POST'])
@@ -380,10 +382,12 @@ def indexar_chromadb():
     collection_name = request.args.get('collection_name')
     collection_name = COLLECTION_NAME if not collection_name else collection_name
 
-    if not path_arquivos: return "Nenhum parâmetro 'path_arquivos' fornecido."
+    if not path_arquivos: 
+        return jsonify({"success": False, "message": "Nenhum parâmetro 'path_arquivos' fornecido."}), 400
+
     # chroma_indexing(path_arquivos, collection_name, embedding_model, chroma_client)
     executor.submit(chroma_indexing, path_arquivos, collection_name, embedding_model, chroma_client)
-    return "Indexação iniciada em segundo plano."
+    return jsonify({"success": True, "message": "Indexação iniciada em segundo plano."}), 200
 
 @app.route('/doQuestion', methods=['GET'])
 def do_question_llm():
